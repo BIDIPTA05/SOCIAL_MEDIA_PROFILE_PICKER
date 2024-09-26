@@ -25,7 +25,7 @@ const Profilescreen = ({navigation, route}) => {
       } catch (error) {
         console.log(error);
       } finally {
-        setLoading(false); // Set loading to false after fetching data
+        setLoading(false);//this I have done for the spinning indicator during user loading
       }
     };
     fetchData();
