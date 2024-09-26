@@ -19,6 +19,6 @@ This repository contains the frontend implementation of the Social Media Profile
 ## Setup Process
 
 1. Clone the repository: git clone https://github.com/BIDIPTA05/social_media_profile_picker
-2. npm i
+2. npm install
 3. npx react-native start
 4. press "a" for android and "i" for ios simulator
