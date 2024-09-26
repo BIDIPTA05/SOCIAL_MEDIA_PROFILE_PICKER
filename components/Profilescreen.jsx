@@ -1,23 +1,43 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, View, Image, Text, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Image,
+  Text,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const Profilescreen = ({navigation, route}) => {
+  const [loading, setLoading] = useState(true);
   const [data, setData] = useState();
   const {userId} = route.params;
   //console.log(userId);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://10.0.2.2:3000/users/${userId}`);
+        const response = await fetch(
+          `https://social-media-server-vert-ten.vercel.app/users/${userId}`,
+        );
         const data = await response.json();
         setData(data);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false); // Set loading to false after fetching data
       }
     };
     fetchData();
   }, []);
+  if (loading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -98,6 +118,11 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: 'bold',
     color: 'red',
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

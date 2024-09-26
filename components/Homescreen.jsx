@@ -20,7 +20,9 @@ const Homescreen = ({navigation}) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://10.0.2.2:3000/users');
+        const response = await fetch(
+          'https://social-media-server-vert-ten.vercel.app/users',
+        );
         const data = await response.json();
         setProfileList(data);
         setFilteredProfiles(data);
@@ -31,6 +33,7 @@ const Homescreen = ({navigation}) => {
     fetchData();
   }, []);
 
+  //console.log(profileList);
   const searching = () => {
     if (profileList.length === 0) return;
     const filteredData = profileList.filter(profile => {
