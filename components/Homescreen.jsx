@@ -70,6 +70,7 @@ const Homescreen = ({navigation}) => {
         </View>
         {filteredProfiles?.map(profile => (
           <ProfileCard
+            key={profile._id}
             profile={profile}
             onPress={() => {
               setSearch('');

@@ -4,10 +4,7 @@ import styles from '../styles/Stylesheet';
 
 const ProfileCard = ({profile, onPress}) => {
   return (
-    <TouchableOpacity
-      key={profile?.id}
-      style={styles.outerContainer}
-      onPress={onPress}>
+    <TouchableOpacity style={styles.outerContainer} onPress={onPress}>
       <Image
         source={{uri: `${profile?.profilePicture}`}}
         style={styles.Image}
