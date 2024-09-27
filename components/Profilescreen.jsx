@@ -34,7 +34,11 @@ const Profilescreen = ({navigation, route}) => {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#0000ff" />
+        <ActivityIndicator
+          size="large"
+          color="#0000ff"
+          testID="loading-indicator"
+        />
       </View>
     );
   }
@@ -44,7 +48,12 @@ const Profilescreen = ({navigation, route}) => {
       <TouchableOpacity
         style={styles.backButton}
         onPress={() => navigation.navigate('home')}>
-        <AntDesign name="leftcircleo" size={30} color="blue" />
+        <AntDesign
+          name="leftcircleo"
+          size={30}
+          color="blue"
+          testID="back-btn"
+        />
       </TouchableOpacity>
 
       <View style={styles.profileouterContainer}>
@@ -60,6 +69,7 @@ const Profilescreen = ({navigation, route}) => {
               uri: 'https://png.pngtree.com/png-clipart/20200701/original/pngtree-red-error-icon-png-image_5418881.jpg',
             }}
             style={styles.profileImage}
+            alt="Fallback Profile Picture"
           />
         )}
         <View style={styles.innerContainer}>
