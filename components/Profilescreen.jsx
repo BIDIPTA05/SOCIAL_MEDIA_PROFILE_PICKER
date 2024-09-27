@@ -8,6 +8,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import styles from '../styles/Stylesheet';
 
 const Profilescreen = ({navigation, route}) => {
   const [loading, setLoading] = useState(true);
@@ -25,7 +26,11 @@ const Profilescreen = ({navigation, route}) => {
       } catch (error) {
         console.log(error);
       } finally {
+<<<<<<< HEAD
         setLoading(false);//this I have done for the spinning indicator during user loading
+=======
+        setLoading(false);
+>>>>>>> 22c5771 (refactor the code into child components and also create a seperate stylesheet for css styles)
       }
     };
     fetchData();
@@ -39,91 +44,38 @@ const Profilescreen = ({navigation, route}) => {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={styles.profilemaincontainer}>
       <TouchableOpacity
         style={styles.backButton}
         onPress={() => navigation.navigate('home')}>
-        <AntDesign name="leftcircleo" size={30} />
+        <AntDesign name="leftcircleo" size={30} color="blue" />
       </TouchableOpacity>
 
-      <View style={styles.outerContainer}>
-        <Text style={styles.profiletext}>Profile View</Text>
+      <View style={styles.profileouterContainer}>
+        <Text style={styles.profileheader}>Profile View</Text>
         {data?.profilePicture ? (
           <Image
             source={{uri: `${data.profilePicture}`}}
-            style={styles.Image}
+            style={styles.profileImage}
           />
         ) : (
           <Image
             source={{
               uri: 'https://png.pngtree.com/png-clipart/20200701/original/pngtree-red-error-icon-png-image_5418881.jpg',
             }}
-            style={styles.Image}
+            style={styles.profileImage}
           />
         )}
         <View style={styles.innerContainer}>
-          <Text style={styles.text}>Name: {data?.name}</Text>
-          <Text style={styles.text}>Age: {data?.age}</Text>
-          <Text style={styles.text}>Email: {data?.email}</Text>
-          <Text style={styles.text}>Bio: {data?.bio}</Text>
+          <Text style={styles.Profiletext}>Name: {data?.name}</Text>
+          <Text style={styles.Profiletext}>Age: {data?.age}</Text>
+          <Text style={styles.Profiletext}>Email: {data?.email}</Text>
+          <Text style={styles.Profiletext}>Bio: {data?.bio}</Text>
         </View>
       </View>
       <Text style={styles.footertext}>Made by Bidipta Saikia</Text>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-  },
-  backButton: {
-    position: 'absolute',
-    top: 40,
-    left: 20,
-    zIndex: 1,
-  },
-  outerContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  Image: {
-    width: 200,
-    height: 200,
-    borderRadius: 100,
-    borderWidth: 1,
-    marginTop: 10,
-    marginBottom: 25,
-  },
-  innerContainer: {
-    alignItems: 'center',
-  },
-  text: {
-    fontSize: 25,
-    fontWeight: 'bold',
-    color: 'black',
-    marginBottom: 10,
-  },
-  profiletext: {
-    fontSize: 50,
-    fontWeight: 'bold',
-    color: 'blue',
-    marginBottom: 50,
-  },
-  footertext: {
-    fontSize: 12,
-    fontWeight: 'bold',
-    color: 'red',
-  },
-  loadingContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default Profilescreen;
