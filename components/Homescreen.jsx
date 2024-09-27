@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, Text, TextInput, ScrollView} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  TextInput,
+  ScrollView,
+  ActivityIndicator,
+} from 'react-native';
 import ProfileCard from './ProfileCard';
 import FilterSliderCard from './FilterSliderCard';
 import styles from '../styles/Stylesheet';
@@ -10,6 +17,7 @@ const Homescreen = ({navigation}) => {
   const [search, setSearch] = useState('');
   const [minimumAge, setMinimumAge] = useState(0);
   const [maximumAge, setMaximumAge] = useState(100);
+  const [loading, setLoading] = useState(true);
   //api fetching
   useEffect(() => {
     const fetchData = async () => {
@@ -22,6 +30,8 @@ const Homescreen = ({navigation}) => {
         setFilteredProfiles(data);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();
@@ -43,7 +53,13 @@ const Homescreen = ({navigation}) => {
   useEffect(() => {
     searching();
   }, [search, minimumAge, maximumAge, profileList]);
-
+  if (loading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Social Media Profile Picker</Text>

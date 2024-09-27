@@ -26,11 +26,7 @@ const Profilescreen = ({navigation, route}) => {
       } catch (error) {
         console.log(error);
       } finally {
-<<<<<<< HEAD
-        setLoading(false);//this I have done for the spinning indicator during user loading
-=======
         setLoading(false);
->>>>>>> 22c5771 (refactor the code into child components and also create a seperate stylesheet for css styles)
       }
     };
     fetchData();
